@@ -1,0 +1,2 @@
+defmodule RecordListEcto do
+end
