@@ -1,4 +1,8 @@
 defmodule RecordListEcto.Options do
+  @moduledoc """
+  Builds `NimbleOptions` options specifications.
+  """
+
   @sort_options NimbleOptions.new!(
                   default_sort: [
                     type: :string,
@@ -30,6 +34,9 @@ defmodule RecordListEcto.Options do
                   ]
                 )
 
+  @doc """
+  Options spec for `RecordListEcto.SortStep`
+  """
   def sort_options() do
     @sort_options
   end
@@ -68,6 +75,9 @@ defmodule RecordListEcto.Options do
                       ]
                     )
 
+  @doc """
+  Options spec for `RecordListEcto.PaginateStep`
+  """
   def paginate_options() do
     @paginate_options
   end
@@ -81,6 +91,9 @@ defmodule RecordListEcto.Options do
                       ]
                     )
 
+  @doc """
+  Options spec for `RecordListEcto.RetrieveStep`
+  """
   def retrieve_options() do
     @retrieve_options
   end

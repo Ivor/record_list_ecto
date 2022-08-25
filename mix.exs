@@ -23,7 +23,8 @@ defmodule RecordListEcto.MixProject do
     [
       {:ecto, "~> 3.8"},
       {:record_list, path: "../record_list"},
-      {:nimble_options, "~> 0.4.0"}
+      {:nimble_options, "~> 0.4.0"},
+      {:ex_doc, "~> 0.27", only: :dev, runtime: false}
       # {:record_list, git: "git@github.com:Ivor/record_list.git", tag: "0.1.0"}
     ]
   end
