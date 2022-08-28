@@ -34,7 +34,16 @@ defmodule RecordListEcto.MixProject do
         "Github" => "https://github.com/ivor/record_list_ecto",
         "Changelog" =>
           "https://github.com/ivor/record_list_ecto/blob/#{@version}/CHANGELOG.md##{String.replace(@version, ".", "")}"
-      }
+      },
+      files: [
+        "lib",
+        "mix.exs",
+        "README.md",
+        "CHANGELOG.md",
+        ".formatter.exs",
+        "VERSION",
+        "LICENSE"
+      ]
     ]
   end
 
@@ -52,7 +61,7 @@ defmodule RecordListEcto.MixProject do
       {:eliver, "~> 2.0.0", only: :dev},
       {:ex_doc, "~> 0.27", only: :dev, runtime: false},
       {:nimble_options, "~> 0.4.0"},
-      {:record_list, tag: "0.1.0"}
+      {:record_list, "~> 0.1.2"}
     ]
   end
 end
