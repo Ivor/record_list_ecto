@@ -61,7 +61,7 @@ defmodule RecordListEcto.MixProject do
       {:eliver, "~> 2.0.0", only: :dev},
       {:ex_doc, "~> 0.27", only: :dev, runtime: false},
       {:nimble_options, "~> 0.4.0"},
-      {:record_list, "~> 0.1.2"}
+      {:record_list, "~> 0.1.3"}
     ]
   end
 end
