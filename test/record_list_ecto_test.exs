@@ -8,7 +8,18 @@ defmodule RecordListEctoTest.User do
   end
 end
 
+defmodule RecordListEctoTest.MockRepo do
+  # NOTE: Only implementing this to avoid having to build a real repo.
+  def all(query), do: query
+
+  def aggregate(query, :count, :id) do
+    100
+  end
+end
+
 defmodule RecordListEctoTest.TestRecordList do
+  alias RecordListEctoTest.MockRepo
+
   use RecordList,
     steps: [
       base: [impl: __MODULE__],
@@ -18,8 +29,8 @@ defmodule RecordListEctoTest.TestRecordList do
         default_order: "asc",
         order_keys: ["nested", "order"]
       ],
-      paginate: [impl: RecordListEcto.PaginateStep, repo: __MODULE__, per_page: 10],
-      retrieve: [impl: RecordListEcto.RetrieveStep, repo: __MODULE__]
+      paginate: [impl: RecordListEcto.PaginateStep, repo: MockRepo, per_page: 10],
+      retrieve: [impl: RecordListEcto.RetrieveStep, repo: MockRepo]
     ]
 
   import Ecto.Query
@@ -28,13 +39,6 @@ defmodule RecordListEctoTest.TestRecordList do
   def execute(record_list, :base, _opts) do
     %{record_list | query: from(u in RecordListEctoTest.User)}
   end
-
-  # NOTE: Only implementing this to avoid having to build a real repo.
-  def all(query), do: query
-
-  def aggregate(query, :count, :id) do
-    100
-  end
 end
 
 defmodule RecordListEctoTest do
@@ -42,6 +46,7 @@ defmodule RecordListEctoTest do
   doctest RecordListEcto
 
   alias RecordListEctoTest.TestRecordList
+  alias RecordListEctoTest.MockRepo
 
   describe "sort" do
     test "will sort by default if no params are passed" do
@@ -174,7 +179,7 @@ defmodule RecordListEctoTest do
 
       %{query: query} =
         RecordListEcto.PaginateStep.execute(record_list, :paginate,
-          repo: RecordListEctoTest.TestRecordList,
+          repo: MockRepo,
           per_page: 10
         )
 
@@ -183,7 +188,7 @@ defmodule RecordListEctoTest do
 
       %{query: query} =
         RecordListEcto.PaginateStep.execute(record_list, :paginate,
-          repo: RecordListEctoTest.TestRecordList,
+          repo: MockRepo,
           per_page: 20,
           page_keys: ["nested", "page"]
         )
@@ -199,11 +204,11 @@ defmodule RecordListEctoTest do
       }
 
       assert_raise FunctionClauseError,
-                   "no function clause matching in RecordListEctoTest.TestRecordList.aggregate/3",
+                   "no function clause matching in RecordListEctoTest.MockRepo.aggregate/3",
                    fn ->
                      %{query: query} =
                        RecordListEcto.PaginateStep.execute(record_list, :paginate,
-                         repo: RecordListEctoTest.TestRecordList,
+                         repo: MockRepo,
                          per_page: 10,
                          count_by: :not_id
                        )
@@ -218,7 +223,7 @@ defmodule RecordListEctoTest do
 
       %{query: query} =
         RecordListEcto.PaginateStep.execute(record_list, :paginate,
-          repo: RecordListEctoTest.TestRecordList,
+          repo: MockRepo,
           per_page: 10,
           per_page_keys: ["nested", "per_page_key"]
         )
