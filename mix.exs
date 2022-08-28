@@ -1,22 +1,40 @@
 defmodule RecordListEcto.MixProject do
   use Mix.Project
 
+  @version String.trim(File.read!("VERSION"))
+
   def project do
     [
       app: :record_list_ecto,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      docs: docs(),
+      package: package()
+    ]
+  end
 
-      # Docs
+  defp docs do
+    [
       name: "RecordListEcto",
-      source: "https://github.com/Ivor/record_list_ecto/",
-      # The main page in the docs
-      docs: [
-        main: "README",
-        extras: ["README.md"]
-      ]
+      main: "README",
+      extras: ["README.md"],
+      source_ref: @version,
+      source_url: "https://github.com/ivor/record_list_ecto/"
+    ]
+  end
+
+  defp package() do
+    [
+      description: "Ecto step implementations for RecordList",
+      maintainers: ["Ivor Paul"],
+      licenses: ["MIT"],
+      links: %{
+        "Github" => "https://github.com/ivor/record_list_ecto",
+        "Changelog" =>
+          "https://github.com/ivor/record_list_ecto/blob/#{@version}/CHANGELOG.md##{String.replace(@version, ".", "")}"
+      }
     ]
   end
 
@@ -31,10 +49,10 @@ defmodule RecordListEcto.MixProject do
   defp deps do
     [
       {:ecto, "~> 3.8"},
-      {:record_list, path: "../record_list"},
+      {:eliver, "~> 2.0.0", only: :dev},
+      {:ex_doc, "~> 0.27", only: :dev, runtime: false},
       {:nimble_options, "~> 0.4.0"},
-      {:ex_doc, "~> 0.27", only: :dev, runtime: false}
-      # {:record_list, git: "git@github.com:Ivor/record_list.git", tag: "0.1.0"}
+      {:record_list, tag: "0.1.0"}
     ]
   end
 end
