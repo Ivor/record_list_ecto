@@ -18,7 +18,7 @@ defmodule RecordListEcto.MixProject do
   defp docs do
     [
       name: "RecordListEcto",
-      main: "README",
+      main: "readme",
       extras: ["README.md"],
       source_ref: @version,
       source_url: "https://github.com/ivor/record_list_ecto/"
