@@ -10,8 +10,8 @@ by adding `record_list_ecto` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:record_list, "~> 0.1.0"}
-    {:record_list_ecto, "~> 0.1.0"}
+    {:record_list, "~> 0.1.3"}
+    {:record_list_ecto, "~> 0.1.2"}
   ]
 end
 ```
