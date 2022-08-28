@@ -1,6 +1,6 @@
 # RecordListEcto
 
-**TODO: Add description**
+A library with Ecto step implementations of `RecordList`. Refer to the documentation for each step, as well as the [tests](https://github.com/Ivor/record_list_ecto/blob/main/test/record_list_ecto_test.exs) for more information. 
 
 ## Installation
 
@@ -10,13 +10,8 @@ by adding `record_list_ecto` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
+    {:record_list, "~> 0.1.0"}
     {:record_list_ecto, "~> 0.1.0"}
   ]
 end
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/record_list_ecto>.
-
-# record_list_ecto

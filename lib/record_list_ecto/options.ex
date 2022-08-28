@@ -87,7 +87,7 @@ defmodule RecordListEcto.Options do
                         required: true,
                         type: :atom,
                         doc:
-                          "The Ecto.Repo to use when calling `all/1` with the query in the record list."
+                          "The Ecto.Repo to use when calling `opts[:repo].all(query)` with the query in the record list."
                       ]
                     )
 

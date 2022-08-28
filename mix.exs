@@ -7,7 +7,16 @@ defmodule RecordListEcto.MixProject do
       version: "0.1.0",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+
+      # Docs
+      name: "RecordListEcto",
+      source: "https://github.com/Ivor/record_list_ecto/",
+      # The main page in the docs
+      docs: [
+        main: "README",
+        extras: ["README.md"]
+      ]
     ]
   end
 
